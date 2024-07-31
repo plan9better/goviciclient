@@ -80,6 +80,12 @@ func (c *ViciClient) UnloadConns(conns string) error {
 	return err
 }
 
+func (c *ViciClient) ListCerts() ([]string, error) {
+	// m := vici.NewMessage()
+
+	return nil, nil
+}
+
 // Close 关闭 VICI 客户端的会话
 func (c *ViciClient) Close() error {
 	return c.session.Close()

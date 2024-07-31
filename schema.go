@@ -40,7 +40,7 @@ type IKEConnection struct {
 type ChildSAConfig struct {
 	Mode         string   `vici:"mode" json:"mode"`
 	StartAction  string   `vici:"start_action" json:"start_action"`
-	EspProposals string   `vici:"esp_proposals" json:"esp_proposals"`
+	EspProposals []string `vici:"esp_proposals" json:"esp_proposals"`
 	LocalTS      []string `vici:"local_ts" json:"local_ts"`
 	RemoteTS     []string `vici:"remote_ts" json:"remote_ts"`
 }
@@ -67,7 +67,7 @@ type IKEConfig struct {
 	ReauthTime  int                      `vici:"reauth_time" json:"reauth_time"`
 	RekeyTime   int                      `vici:"rekey_time" json:"rekey_time"`
 	LocalAuths  *LocalAuthConfig         `vici:"local" json:"local"`
-	RemoteAuths RemoteAuthConfig         `vici:"remote" json:"remote"`
+	RemoteAuths *RemoteAuthConfig        `vici:"remote" json:"remote"`
 	Children    map[string]ChildSAConfig `vici:"children" json:"children"`
 }
 

@@ -6,7 +6,7 @@ import (
 
 func TestExampleUsage(t *testing.T) {
 	// 创建一个新的 VICI 客户端
-	client, err := NewViciClient("", "")
+	client, err := NewViciClient("192.168.23.199:1199", "tcp")
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -24,6 +24,8 @@ func TestExampleUsage(t *testing.T) {
 	// }
 	// t.Log(names)
 
+	t.Log(client.ListCerts())
+
 	// 加载连接
 	var conns = make(map[string]IKEConfig)
 	conns["test"] = IKEConfig{
@@ -34,16 +36,16 @@ func TestExampleUsage(t *testing.T) {
 		RekeyTime:   3600,
 		Proposals:   []string{"aes128-sha256-modp2048"},
 		LocalAuths: &LocalAuthConfig{
-			Auth:  "pubkey",
-			Certs: []string{"ChinaUnicom-test-172.cer"},
+			Auth: "pubkey",
 		},
-		RemoteAuths: RemoteAuthConfig{},
+		RemoteAuths: &RemoteAuthConfig{},
 		Children: map[string]ChildSAConfig{
 			"test": {
-				Mode:        "tunnel",
-				StartAction: "start",
-				LocalTS:     []string{"10.10.1.0/24"},
-				RemoteTS:    []string{"10.11.1.0/24"},
+				Mode:         "tunnel",
+				StartAction:  "start",
+				LocalTS:      []string{"10.10.1.0/24"},
+				RemoteTS:     []string{"10.11.1.0/24"},
+				EspProposals: []string{"sm4-sm3"},
 			},
 		},
 	}

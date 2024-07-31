@@ -1,4 +1,4 @@
-module goviciclient
+module github.com/ploynomail/goviciclient
 
 go 1.22.1
 
