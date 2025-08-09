@@ -1,5 +1,7 @@
-module github.com/ploynomail/goviciclient
+module github.com/plan9better/goviciclient
 
-go 1.22.1
+go 1.23
 
-require github.com/strongswan/govici v0.7.0
+toolchain go1.24.2
+
+require github.com/strongswan/govici v0.6.0

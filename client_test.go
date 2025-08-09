@@ -6,7 +6,11 @@ import (
 
 func TestExampleUsage(t *testing.T) {
 	// 创建一个新的 VICI 客户端
-	client, err := NewViciClient("192.168.23.199:1199", "tcp")
+	opts := &clientOpts{
+		Network: "tcp",
+		Addr:    "192.168.23.199:1199",
+	}
+	client, err := NewViciClient(opts)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -24,7 +28,7 @@ func TestExampleUsage(t *testing.T) {
 	// }
 	// t.Log(names)
 
-	t.Log(client.ListCerts())
+	// t.Log(client.ListCerts())
 
 	// 加载连接
 	var conns = make(map[string]IKEConfig)
